@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/obd1"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:src="@drawable/photo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPhoto" />
 
     <TextView
-        android:id="@+id/tvNext2"
+        android:id="@+id/tvNextTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

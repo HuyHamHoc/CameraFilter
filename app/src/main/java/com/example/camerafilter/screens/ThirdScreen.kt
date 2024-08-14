@@ -10,25 +10,28 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.camerafilter.R
+import com.example.camerafilter.databinding.FragmentThirdScreenBinding
 
 
 class ThirdScreen : Fragment() {
-    
+    private var _binding: FragmentThirdScreenBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_third_screen, container, false)
+        _binding = FragmentThirdScreenBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val finish = view.findViewById<TextView>(R.id.tvFinish)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-
-        finish.setOnClickListener {
+        binding.tvFinish.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_homeFragment)
             onBoardingIsFinish()
         }
-        return view
     }
 
     private fun onBoardingIsFinish(){
@@ -36,5 +39,10 @@ class ThirdScreen : Fragment() {
         val editor = sharedPreferences.edit()
         editor.putBoolean("finished",false)
         editor.apply()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

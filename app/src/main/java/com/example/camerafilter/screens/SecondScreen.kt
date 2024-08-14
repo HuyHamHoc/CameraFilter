@@ -8,23 +8,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.camerafilter.R
+import com.example.camerafilter.databinding.FragmentSecondScreenBinding
 
 
 class SecondScreen : Fragment() {
-    
+    private var _binding: FragmentSecondScreenBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_second_screen, container, false)
+        _binding = FragmentSecondScreenBinding.inflate(inflater,container,false)
+        return binding.root
+    }
 
-        val next = view.findViewById<TextView>(R.id.tvNext2)
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        next.setOnClickListener {
+        binding.tvNextTwo.setOnClickListener {
+            val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager)
             viewPager?.currentItem = 2
         }
-        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
